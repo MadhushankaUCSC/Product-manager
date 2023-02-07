@@ -1,0 +1,24 @@
+{
+  "name": "product-manager",
+  "version": "1.0.0",
+  "description": "simple product management system for store",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MadhushankaUCSC/Product-manager.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MadhushankaUCSC/Product-manager/issues"
+  },
+  "homepage": "https://github.com/MadhushankaUCSC/Product-manager#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^6.9.0",
+    "nodemon": "^2.0.20"
+  }
+}

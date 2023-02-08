@@ -4,6 +4,11 @@ var productService = require("../products/productService");
 
 var orderService = require("./orderService");
 
+/**
+ * get all orders
+ * @param {*} request 
+ * @param {*} response 
+ */
 module.exports.orderGetAll = async (request, response) => {
   try {
     var orders = await orderService.getAllOrders();
@@ -13,6 +18,12 @@ module.exports.orderGetAll = async (request, response) => {
   }
 };
 
+
+/**
+ * create new order
+ * @param {*} request 
+ * @param {*} response 
+ */
 module.exports.orderCreate = async (request, response) => {
   try {
     var order = await orderService.createOrder(request.body.customer_id);
@@ -69,7 +80,12 @@ module.exports.orderCreate = async (request, response) => {
 //     responseService.errorWithMessage(response, "Order Update Fail !");
 //   }
 // };
-
+ 
+/**
+ * remove order with order items
+ * @param {*} request 
+ * @param {*} response 
+ */
 module.exports.orderRemove = async (request, response) => {
   try {
     var order = await orderService.removeOrder(request.params.id);
@@ -99,7 +115,11 @@ module.exports.orderRemove = async (request, response) => {
 };
 
 
-
+/**
+ * get single order
+ * @param {*} request 
+ * @param {*} response 
+ */
 module.exports.order = async (request, response) => {
   try {
     var order = await orderService.singleOrder(request.params.id);

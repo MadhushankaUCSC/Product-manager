@@ -21,6 +21,22 @@ module.exports.customerRegister=async(request,response)=>{
     }
 }
 
+module.exports.customerLogin=async(request,response)=>{
+    try {
+        var customerData=await customerService.loginCustomer(request.body)
+        if (customerData.status) {
+        responseService.successWithMessage(response,customerData.message)
+            
+        } else {
+        responseService.errorWithMessage(response,customerData.message)
+            
+        }
+    } catch (error) {
+       responseService.errorWithMessage(response,"Customer Login Fail !") 
+        
+    }
+}
+
 module.exports.customerUpdate=async(request,response)=>{
     try {
         var customer=await customerService.updatedCustomer(request.body,request.params.id)

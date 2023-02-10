@@ -12,6 +12,9 @@ try {
 }
 }
 
+
+
+
 module.exports.customerRegister=async(request,response)=>{
     try {
         var customer=await customerService.registerCustomer(request.body)
@@ -58,7 +61,14 @@ module.exports.customerRemove=async(request,response)=>{
 module.exports.customer=async(request,response)=>{
     try {
         var customer=await customerService.singleCustomer(request.params.id)
+       if (customer) {
         responseService.successWithData(response,customer)
+        
+       } else {
+      responseService.errorWithMessage(response,"Customer Can not Find !")  
+        
+       }
+       
     } catch (error) {
       responseService.errorWithMessage(response,"Customer Get Fail !")  
     }

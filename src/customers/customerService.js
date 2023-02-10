@@ -1,4 +1,5 @@
 var customerModel = require("./customerModel");
+var authService = require("../../services/authService");
 
 module.exports.getAllCustomers = () => {
   return new Promise((resolve, reject) => {
@@ -48,7 +49,8 @@ module.exports.loginCustomer = (loginData) => {
               data.password
             );
             if (validationStatus) {
-              resolve({ status: true, message: "Login Success !" });
+              const token = authService.tokenGenerate(data);
+              resolve({ status: true, message: token });
             } else {
               resolve({ status: true, message: "Invalid Password !" });
             }
@@ -96,13 +98,17 @@ module.exports.removeCustomer = (id) => {
 };
 
 module.exports.singleCustomer = (id) => {
-  return new Promise((resolve, reject) => {
-    customerModel.find({ _id: id }, (error, data) => {
-      if (error) {
-        reject(error);
-      } else {
-        resolve(data);
-      }
+  try {
+    return new Promise((resolve, reject) => {
+      customerModel.find({ _id: id }, (error, data) => {
+        if (error) {
+          resolve(null);
+        } else {
+          resolve(data);
+        }
+      });
     });
-  });
+  } catch (error) {
+    reject(error);
+  }
 };
